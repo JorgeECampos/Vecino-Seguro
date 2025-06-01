@@ -39,3 +39,6 @@ android/app/release/
 
 # Others
 .migrate_working_dir/
+
+# No versionar el JSON de configuración de Firebase
+/android/app/google-services.json
