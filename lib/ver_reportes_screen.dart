@@ -20,17 +20,17 @@ class _VerReportesScreenState extends State<VerReportesScreen> {
         actions: [
           DropdownButton<String>(
             value: _estadoSeleccionado,
+            onChanged: (valor) {
+              if (valor != null) {
+                setState(() => _estadoSeleccionado = valor);
+              }
+            },
             items: ['todos', 'pendiente', 'resuelto']
                 .map((estado) => DropdownMenuItem(
               value: estado,
               child: Text(estado[0].toUpperCase() + estado.substring(1)),
             ))
                 .toList(),
-            onChanged: (valor) {
-              setState(() {
-                _estadoSeleccionado = valor!;
-              });
-            },
           ),
         ],
       ),
@@ -47,26 +47,28 @@ class _VerReportesScreenState extends State<VerReportesScreen> {
             return const Center(child: CircularProgressIndicator());
           }
 
-          final docs = snapshot.data!.docs.where((doc) {
-            if (_estadoSeleccionado == 'todos') return true;
+          final reportes = snapshot.data!.docs.where((doc) {
             final estado = doc['estado'] ?? 'pendiente';
-            return estado == _estadoSeleccionado;
+            return _estadoSeleccionado == 'todos' || estado == _estadoSeleccionado;
           }).toList();
 
-          if (docs.isEmpty) {
+          if (reportes.isEmpty) {
             return const Center(child: Text('No hay reportes'));
           }
 
           return ListView.builder(
-            itemCount: docs.length,
+            itemCount: reportes.length,
             itemBuilder: (context, index) {
-              final doc = docs[index];
+              final doc = reportes[index];
               final data = doc.data() as Map<String, dynamic>;
+
               final tipo = data['tipo'] ?? 'Desconocido';
               final ubicacion = data['ubicacion'] ?? 'Sin ubicación';
               final estado = data['estado'] ?? 'pendiente';
-              final fecha = (data['fecha'] as Timestamp).toDate();
-              final fechaTexto = DateFormat('dd/MM/yyyy HH:mm').format(fecha);
+              final fecha = (data['fecha'] as Timestamp?)?.toDate();
+              final fechaTexto = fecha != null
+                  ? DateFormat('dd/MM/yyyy HH:mm').format(fecha)
+                  : 'Sin fecha';
               final imagenURL = data['fotoURL'];
 
               return Card(
@@ -79,10 +81,10 @@ class _VerReportesScreenState extends State<VerReportesScreen> {
                     children: [
                       Text(ubicacion),
                       Text(fechaTexto),
-                      if (imagenURL != null && imagenURL != '')
+                      if (imagenURL != null && imagenURL.toString().isNotEmpty)
                         Padding(
                           padding: const EdgeInsets.only(top: 8.0),
-                          child: Image.network(imagenURL, height: 100),
+                          child: Image.network(imagenURL, height: 100, fit: BoxFit.cover),
                         ),
                     ],
                   ),
@@ -96,15 +98,29 @@ class _VerReportesScreenState extends State<VerReportesScreen> {
                           title: const Text('¿Eliminar reporte?'),
                           content: const Text('Esta acción no se puede deshacer.'),
                           actions: [
-                            TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancelar')),
-                            TextButton(onPressed: () => Navigator.pop(context, true), child: const Text('Eliminar')),
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, false),
+                              child: const Text('Cancelar'),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, true),
+                              child: const Text('Eliminar'),
+                            ),
                           ],
                         ),
                       );
 
                       if (confirmar == true) {
-                        await FirebaseFirestore.instance.collection('reportes').doc(doc.id).delete();
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Reporte eliminado')));
+                        await FirebaseFirestore.instance
+                            .collection('reportes')
+                            .doc(doc.id)
+                            .delete();
+
+                        if (mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Reporte eliminado')),
+                          );
+                        }
                       }
                     },
                   ),

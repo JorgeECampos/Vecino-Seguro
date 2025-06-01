@@ -1,12 +1,33 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'reporte_screen.dart';
 import 'ver_reportes_screen.dart';
 import 'acerca_cefodeh_screen.dart';
 
+Future<void> autenticarAnonimamente() async {
+  final auth = FirebaseAuth.instance;
+
+  if (auth.currentUser == null) {
+    try {
+      await auth.signInAnonymously().timeout(
+        const Duration(seconds: 5),
+        onTimeout: () {
+          throw TimeoutException('FirebaseAuth timeout');
+        },
+      );
+    } catch (e) {
+      debugPrint('❌ Error al autenticar anónimamente: $e');
+    }
+  }
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await autenticarAnonimamente();
   runApp(const MyApp());
 }
 
@@ -24,17 +45,28 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 3), () {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const HomeScreen()),
-      );
-    });
+  State<SplashScreen> createState() => _SplashScreenState();
+}
 
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 3), () {
+      if (mounted) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (_) => const HomeScreen()),
+        );
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -67,33 +99,27 @@ class HomeScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ElevatedButton(
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const ReporteScreen()),
+              ),
               child: const Text('Crear reporte'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ReporteScreen()),
-                );
-              },
             ),
             const SizedBox(height: 16),
             ElevatedButton(
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const VerReportesScreen()),
+              ),
               child: const Text('Ver reportes'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const VerReportesScreen()),
-                );
-              },
             ),
             const SizedBox(height: 16),
             ElevatedButton(
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const AcercaCefodehScreen()),
+              ),
               child: const Text('Acerca de CEFODEH'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AcercaCefodehScreen()),
-                );
-              },
             ),
           ],
         ),

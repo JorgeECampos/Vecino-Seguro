@@ -34,8 +34,8 @@ android {
 
     defaultConfig {
         applicationId = "com.example.vecino_seguro"
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        minSdk = 23
+        targetSdk = 33
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }

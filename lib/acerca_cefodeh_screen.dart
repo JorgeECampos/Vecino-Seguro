@@ -4,17 +4,17 @@ import 'package:url_launcher/url_launcher.dart';
 class AcercaCefodehScreen extends StatelessWidget {
   const AcercaCefodehScreen({super.key});
 
-  void _abrirWhatsApp() async {
+  Future<void> _abrirWhatsApp() async {
     final url = Uri.parse("https://wa.me/524626214305");
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
     }
   }
 
-  void _enviarCorreo() async {
-    final Uri email = Uri(
+  Future<void> _enviarCorreo() async {
+    final email = Uri(
       scheme: 'mailto',
-      path: 'contacto@cefodeh.org',
+      path: 'cefodeh@cefodeh.org',
       query: 'subject=Contacto desde la app Vecino Seguro',
     );
     if (await canLaunchUrl(email)) {
@@ -28,8 +28,7 @@ class AcercaCefodehScreen extends StatelessWidget {
       appBar: AppBar(title: const Text('Acerca de CEFODEH')),
       body: Padding(
         padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             const Text(
               'CEFODEH',
@@ -58,12 +57,12 @@ class AcercaCefodehScreen extends StatelessWidget {
             const SizedBox(height: 12),
             ListTile(
               leading: const Icon(Icons.chat, color: Colors.green),
-              title: const Text('WhatsApp: +52 1 55 4583 4548'),
+              title: const Text('WhatsApp: +52 462 621 4305'),
               onTap: _abrirWhatsApp,
             ),
             ListTile(
               leading: const Icon(Icons.email, color: Colors.blue),
-              title: const Text('Correo: cefodeh@cefodeh.org'),
+              title: const Text('Correo: conatcto@cefodeh.org'),
               onTap: _enviarCorreo,
             ),
           ],

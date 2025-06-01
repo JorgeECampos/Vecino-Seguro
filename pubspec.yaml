@@ -39,6 +39,7 @@ dependencies:
   intl: ^0.18.1
   permission_handler: ^11.0.1
   flutter_launcher_icons: ^0.14.3
+  firebase_auth: ^4.5.0
 
 dev_dependencies:
   flutter_test:

@@ -20,7 +20,13 @@ class _ReporteScreenState extends State<ReporteScreen> {
   String descripcion = '';
   File? imagen;
 
-  final tiposProblema = ['Bache', 'Luminaria', 'Basura', 'Fuga de agua', 'Otro'];
+  final List<String> tiposProblema = [
+    'Bache',
+    'Luminaria',
+    'Basura',
+    'Fuga de agua',
+    'Otro',
+  ];
 
   Future<void> _requestPermissions() async {
     await [
@@ -44,12 +50,11 @@ class _ReporteScreenState extends State<ReporteScreen> {
   Future<String?> _uploadImage(File image) async {
     try {
       final ref = FirebaseStorage.instance
-          .ref()
-          .child('reportes/${DateTime.now().millisecondsSinceEpoch}.jpg');
+          .ref('reportes/${DateTime.now().millisecondsSinceEpoch}.jpg');
       await ref.putFile(image, SettableMetadata(contentType: 'image/jpeg'));
       return await ref.getDownloadURL();
     } catch (e) {
-      print('❌ Error al subir imagen: $e');
+      debugPrint('❌ Error al subir imagen: $e');
       return null;
     }
   }
@@ -69,21 +74,22 @@ class _ReporteScreenState extends State<ReporteScreen> {
       'hash': '#SOYVOLUNTARIOCEFODEH',
     });
 
+    if (!mounted) return;
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
-        title: Text('Reporte enviado'),
-        content: Text('¿Deseas compartirlo por WhatsApp?'),
+        title: const Text('Reporte enviado'),
+        content: const Text('¿Deseas compartirlo por WhatsApp?'),
         actions: [
           TextButton(
-            child: Text('No'),
+            child: const Text('No'),
             onPressed: () => Navigator.pop(context),
           ),
           TextButton(
-            child: Text('Sí'),
+            child: const Text('Sí'),
             onPressed: () {
               Navigator.pop(context);
-              _enviarPorWhatsapp(tipo, ubicacion, descripcion, imageUrl);
+              _enviarPorWhatsapp(imageUrl);
             },
           ),
         ],
@@ -91,7 +97,7 @@ class _ReporteScreenState extends State<ReporteScreen> {
     );
   }
 
-  void _enviarPorWhatsapp(String tipo, String ubicacion, String descripcion, String? imageUrl) async {
+  Future<void> _enviarPorWhatsapp(String? imageUrl) async {
     final mensaje = '''
 🚨 Nuevo reporte de problema
 
@@ -102,12 +108,13 @@ ${imageUrl != null ? '📷 Imagen: $imageUrl' : ''}
 #VecinoSeguro
 ''';
 
-    final url = 'https://wa.me/5214626214305?text=${Uri.encodeComponent(mensaje)}';
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+    final url = Uri.parse('https://wa.me/5214626214305?text=${Uri.encodeComponent(mensaje)}');
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
     } else {
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('No se pudo abrir WhatsApp')),
+        const SnackBar(content: Text('No se pudo abrir WhatsApp')),
       );
     }
   }
@@ -133,17 +140,19 @@ ${imageUrl != null ? '📷 Imagen: $imageUrl' : ''}
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Ubicación'),
                 onChanged: (val) => ubicacion = val,
-                validator: (val) => val == null || val.isEmpty ? 'Escribe la ubicación' : null,
+                validator: (val) =>
+                val == null || val.isEmpty ? 'Escribe la ubicación' : null,
               ),
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Descripción'),
                 onChanged: (val) => descripcion = val,
-                validator: (val) => val == null || val.isEmpty ? 'Agrega una descripción' : null,
+                validator: (val) =>
+                val == null || val.isEmpty ? 'Agrega una descripción' : null,
                 maxLines: 3,
               ),
               const SizedBox(height: 16),
               imagen != null
-                  ? Image.file(imagen!, height: 100)
+                  ? Image.file(imagen!, height: 150)
                   : TextButton.icon(
                 icon: const Icon(Icons.camera_alt),
                 label: const Text('Tomar foto (opcional)'),
