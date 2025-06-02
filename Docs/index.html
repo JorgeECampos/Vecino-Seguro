@@ -1,0 +1,89 @@
+# Vecino Seguro
+
+**“Vecino Seguro”** es una app Flutter que permite a cualquier ciudadano reportar problemas en su comunidad (baches, luminarias fundidas, basura, fugas, etc.) y enviarlos automáticamente por WhatsApp y almacenarlos en Firestore / Firebase Storage.
+
+---
+## Tabla de contenidos
+1. [Descripción del proyecto](#descripción-del-proyecto)
+2. [Instalación y uso](#instalación-y-uso)
+3. [Características principales](#características-principales)
+4. [Pantallas y ejemplos](#pantallas-y-ejemplos)
+5. [Cómo contribuir](#cómo-contribuir)
+6. [Licencia](#licencia)
+
+---
+## Descripción del proyecto
+La aplicación **Vecino Seguro** nació para abordar el ODS 11: “Ciudades y comunidades sostenibles”.  
+Permite que los residentes de una zona periurbana (por ejemplo, Tlajomulco de Zúñiga, Jalisco) reporten incidencias urbanas de forma rápida, almacenando la información en Firebase y notificando a las autoridades vía WhatsApp.
+
+---
+## Instalación y uso
+1. Clona el repositorio en tu máquina:
+   ```bash
+   git clone https://github.com/<TU_USUARIO>/vecino_seguro.git
+   cd vecino_seguro
+
+## Características principales
+
+Autenticación anónima: Cada usuario accede sin necesidad de registrarse; Firebase Auth crea un usuario anónimo que permite controlar permisos de lectura/escritura en Firestore y Storage.
+
+Creación de reportes:
+
+- El usuario selecciona el tipo de incidencia (bache, luminaria, basura, fuga de agua, otro). 
+- Llena ubicación y descripción. 
+- Puede tomar una foto opcional con la cámara. 
+- Al presionar “Enviar reporte”, se guarda en Firestore y, opcionalmente, se envía por WhatsApp.
+
+Visualización de reportes:
+
+- Pantalla “Ver reportes” muestra todos los reportes ordenados por fecha.
+- Filtrado por estado (pendiente / resuelto).
+- El usuario anónimo puede borrar sólo sus propios documentos si implementas validación en Firestore (ver secciones avanzadas).
+
+Sección “Acerca de CEFODEH”:
+
+- Muestra información de la organización responsable (CEFODEH).
+- Botones para enviar mensaje por WhatsApp o correo.
+
+## Pantallas y ejemplos
+### Splash Screen
+
+<!-- TODO Colocar capturas en una carpeta `docs/screenshots/` -->
+1. Home
+2. Crear reporte
+3. Ver reportes
+4. Acerca de CEFODEH
+
+## Cómo contribuir
+Si quieres ayudar a mejorar Vecino Seguro, puedes:
+
+1. Hacer un Fork de este repositorio.
+2. Crear una rama con tu feature o fix:
+
+```
+git checkout -b mi-nueva-funcionalidad  
+```
+
+Commit y push de tus cambios:
+
+    git add .
+    git commit -m "Descripción de la mejora"
+    git push origin mi-nueva-funcionalidad
+
+    Abrir un Pull Request en GitHub para revisión.
+
+## Licencia
+
+Este proyecto está bajo la licencia MIT.
+
+(Si no tienes un LICENSE aún, crea uno en la raíz de tu repositorio con el texto estándar de MIT o la que prefieras.)
+
+
+## ¿Cómo consumir nuestra API?
+
+2.1. En un navegador (o Postman / Insomnia)
+
+Simplemente abres la URL https://us-central1-mi-app-vecinal.cloudfunctions.net/getReportes en tu navegador o utilizas Postman:
+
+1. Abre tu navegador y pega esa URL. Deberías ver el JSON impreso en pantalla. 
+2. En Postman, haces una petición GET a la misma URL y verás la respuesta JSON en el cuerpo.
