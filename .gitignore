@@ -42,3 +42,12 @@ android/app/release/
 
 # No versionar el JSON de configuración de Firebase
 /android/app/google-services.json
+
+# Carpetas/archivos de IDE/editores
+
+
+# Flutter / Dart / Pub
+.metadata
+/build/
+/android/.gradle/
+/ios/Pods/
