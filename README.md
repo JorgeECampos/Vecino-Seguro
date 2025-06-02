@@ -1,30 +1,29 @@
 # Vecino Seguro 🚨
 
-**Vecino Seguro** is a Flutter-based mobile application that empowers community members to report and track local urban issues — such as potholes, broken lights, or leaks — and share them through WhatsApp to streamline response and visibility.
+**Vecino Seguro** es una app Flutter que permite a cualquier ciudadano reportar problemas en su comunidad (baches, luminarias fundidas, basura, fugas, etc.), compartirlos vía WhatsApp y almacenarlos en Firebase (Firestore & Storage).
 
-## 📲 Features
+---
 
-- Create and send incident reports with descriptions and photos
-- Auto-share reports via WhatsApp
-- Store reports securely in Firebase (Firestore & Storage)
-- View submitted reports in-app
-- Simple, user-friendly interface
+## 🔹 Características
 
-## 🎯 Purpose
+- Creación de reportes con descripción y foto
+- Compartir automáticamente por WhatsApp
+- Almacenar datos y fotos en Firebase
+- Visualizar y filtrar reportes en la app
 
-This project was developed as part of a social service initiative in Tlajomulco de Zúñiga, Jalisco, to support SDG 11: *Sustainable Cities and Communities*, in partnership with **CEFODEH**.
+---
 
-## 🛠 Tech Stack
+## 🔹 Tecnologías
 
-- Flutter 3.7.2
+- Flutter 3.7.2 / Dart 3.7.2
 - Firebase Firestore & Storage
-- WhatsApp Web API (via `url_launcher`)
-- Permission Handler
-- Image Picker
+- Firebase Auth (anónimo)
+- [`url_launcher`](https://pub.dev/packages/url_launcher) (WhatsApp API)
+- `permission_handler`
+- `image_picker`
 
-## 🚀 Getting Started
+---
 
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/your-user/vecino_seguro.git
-   cd vecino_seguro
+## 📚 Documentación
+
+La guía completa (instalación detallada, flujo de pantallas, ejemplos de código y API) está disponible en https://jorgeecampos.github.io/vecino_seguro/.
