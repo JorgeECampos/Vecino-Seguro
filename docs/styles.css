@@ -258,60 +258,62 @@ a:hover {
 }
 
 /* -------------------------------------
-   Workflow imágenes
+   Workflow (Imagenes)
 -------------------------------------- */
 
 #workflow {
   margin-bottom: 3rem;
 }
 
-.workflow-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1rem;
+#workflow h2 {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
 }
 
-.workflow-step {
-  flex: 1 1 180px;
+#workflow p {
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.workflow-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.workflow-item {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.workflow-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .workflow-img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.workflow-img:hover {
-  transform: scale(1.02);
-}
-
-.workflow-caption {
   display: block;
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-  color: #555;
 }
 
-.workflow-arrow {
-  font-size: 1.5rem;
-  color: #888;
-  flex: 0 0 auto; /* No crece ni se encoje */
-  margin: 0 0.5rem;
+.workflow-label {
+  display: block;
+  padding: 0.75rem 0.5rem;
+  font-size: 0.95rem;
+  color: #333;
+  background-color: #f7f7f7;
+  border-top: 1px solid #e0e0e0;
 }
 
-@media (max-width: 700px) {
-  .workflow-arrow {
-    display: none;
-  }
-  .workflow-step {
-    flex: 1 1 100%;
-    margin-bottom: 1.5rem;
+@media (max-width: 400px) {
+  .workflow-label {
+    font-size: 0.85rem;
   }
 }
