@@ -47,12 +47,10 @@ class _VerReportesScreenState extends State<VerReportesScreen> {
             return const Center(child: CircularProgressIndicator());
           }
 
-          // Filtramos documentos según el estado
           final reportes = snapshot.data!.docs.where((doc) {
-            // Obtenemos el Map de datos
+
             final data = doc.data() as Map<String, dynamic>;
 
-            // Si el campo 'estado' no existe, asumimos 'pendiente'
             final estado = data.containsKey('estado') ? data['estado'] as String : 'pendiente';
 
             return _estadoSeleccionado == 'todos' || estado == _estadoSeleccionado;
@@ -71,10 +69,9 @@ class _VerReportesScreenState extends State<VerReportesScreen> {
               final tipo = data['tipo'] ?? 'Desconocido';
               final ubicacion = data['ubicacion'] ?? 'Sin ubicación';
 
-              // Aquí hacemos la comprobación de existencia de 'estado'
               final estado = data.containsKey('estado') ? data['estado'] as String : 'pendiente';
 
-              // Convertimos la marca de tiempo a DateTime y lo formateamos
+
               final fecha = (data['fecha'] as Timestamp?)?.toDate();
               final fechaTexto = fecha != null
                   ? DateFormat('dd/MM/yyyy HH:mm').format(fecha)
@@ -92,7 +89,6 @@ class _VerReportesScreenState extends State<VerReportesScreen> {
                     children: [
                       Text(ubicacion),
                       Text(fechaTexto),
-                      // Mostramos la imagen solo si la URL existe y no está vacía
                       if (imagenURL != null && imagenURL.isNotEmpty)
                         Padding(
                           padding: const EdgeInsets.only(top: 8.0),
@@ -135,7 +131,6 @@ class _VerReportesScreenState extends State<VerReportesScreen> {
                             .doc(doc.id)
                             .delete();
 
-                        // Solo mostramos el SnackBar si el widget sigue montado
                         if (mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('Reporte eliminado')),

@@ -4,7 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+// ...otros imports...
 import 'package:url_launcher/url_launcher.dart';
+import '../config.dart';
 
 class ReporteScreen extends StatefulWidget {
   const ReporteScreen({super.key});
@@ -108,7 +110,9 @@ ${imageUrl != null ? '📷 Imagen: $imageUrl' : ''}
 #VecinoSeguro
 ''';
 
-    final url = Uri.parse('https://wa.me/5214626214305?text=${Uri.encodeComponent(mensaje)}');
+    // Usamos kWhatsAppNumber desde config.dart en lugar de un número fijo
+    final numero = kWhatsAppNumber;
+    final url = Uri.parse('https://wa.me/$numero?text=${Uri.encodeComponent(mensaje)}');
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
     } else {

@@ -51,3 +51,12 @@ android/app/release/
 /build/
 /android/.gradle/
 /ios/Pods/
+
+# .gitignore
+lib/config.dart
+/android
+/ios
+/macos
+/linux
+/windows
+/web
