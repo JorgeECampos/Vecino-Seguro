@@ -5,44 +5,81 @@
     <title>Vecino Seguro - API</title>
     <link rel="stylesheet" href="styles.css" />
     <style>
-    html { scroll-behavior: smooth; }
-    code {
-      background-color: #f4f4f4;
-      padding: 0.2em 0.4em;
-      border-radius: 4px;
-      font-family: monospace;
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
     }
-    pre {
-      background-color: #f4f4f4;
+    header, footer {
+      background-color: #0366d6;
+      color: white;
       padding: 1em;
+      text-align: center;
+    }
+    .container {
+      padding: 2em;
+      max-width: 900px;
+      margin: auto;
+    }
+    .code-block {
+      position: relative;
+      background: #f4f4f4;
       border-radius: 6px;
+      padding: 1em;
+      margin-top: 1em;
       overflow-x: auto;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 0.8em;
+      padding: 4px 8px;
+      background: #0366d6;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .copy-btn:hover {
+      background: #024fa2;
+    }
+    a {
+      color: #0366d6;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
 <header>
     <h1>📡 API de Vecino Seguro</h1>
-    <p>Consulta pública de reportes ciudadanos</p>
 </header>
 
 <main class="container">
-    <section class="content">
-        <h2>🔹 Endpoint disponible</h2>
-        <p><strong>GET</strong> <code>https://us-central1-mi-app-vecinal.cloudfunctions.net/getReportes</code></p>
+    <section>
+        <h2>📥 Endpoint público</h2>
+        <p>Este endpoint devuelve un arreglo JSON con los reportes comunitarios:</p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
+            <pre><code>https://us-central1-mi-app-vecinal.cloudfunctions.net/getReportes</code></pre>
+        </div>
+    </section>
 
-        <h3>📘 Descripción</h3>
-        <p>Devuelve un listado de reportes públicos creados por los usuarios de la app Vecino Seguro.</p>
+    <section>
+        <h2>🧪 Ejemplo con curl</h2>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
+            <pre><code>curl https://us-central1-mi-app-vecinal.cloudfunctions.net/getReportes</code></pre>
+        </div>
+    </section>
 
-        <h3>🔐 Autenticación</h3>
-        <p>No requiere autenticación. Acceso público.</p>
-
-        <h3>📥 Parámetros</h3>
-        <p>Este endpoint no acepta parámetros de entrada.</p>
-
-        <h3>📤 Respuesta</h3>
-        <p>Un arreglo JSON de objetos con esta estructura:</p>
-        <pre><code>{
+    <section>
+        <h2>📤 Respuesta esperada (JSON)</h2>
+        <p>Ejemplo de objeto:</p>
+        <div class="code-block">
+            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
+            <pre><code>{
   "tipo": "Bache",
   "ubicacion": "Av. Hidalgo #123",
   "descripcion": "Hay un bache profundo",
@@ -50,21 +87,22 @@
   "fecha": "2025-06-01T14:30:00.000Z",
   "fotoURL": "https://firebasestorage.googleapis.com/..."
 }</code></pre>
-
-        <h3>📦 Código de estado esperado</h3>
-        <ul>
-            <li><code>200 OK</code> – Respuesta exitosa</li>
-            <li><code>500 Internal Server Error</code> – Error en la función</li>
-        </ul>
-
-        <h3>🔗 Ejemplo rápido</h3>
-        <p>Puedes abrir el endpoint en el navegador:</p>
-        <p><a href="https://us-central1-mi-app-vecinal.cloudfunctions.net/getReportes" target="_blank">Ver respuesta JSON</a></p>
+        </div>
     </section>
 </main>
 
 <footer>
     <a href="index.html">← Volver a la documentación principal</a>
 </footer>
+
+<script>
+    function copyToClipboard(button) {
+      const code = button.nextElementSibling.innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        button.textContent = "¡Copiado!";
+        setTimeout(() => (button.textContent = "Copiar"), 2000);
+      });
+    }
+  </script>
 </body>
 </html>
