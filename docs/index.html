@@ -9,152 +9,161 @@
 <header>
     <h1>Vecino Seguro</h1>
     <p>
-        Vecino Seguro helps residents report urban incidents quickly. It supports Sustainable Development
-        Goal 11: “Sustainable Cities and Communities.” Using Firebase, the app stores incident data and notifies authorities via WhatsApp.
-        Residents in periurban areas (for example, Tlajomulco de Zúñiga, Jalisco) can report issues such as potholes, broken streetlights,
-        or water leaks.
+        Vecino Seguro lets residents report urban problems quickly. The app supports Sustainable Development Goal 11: “Sustainable Cities and Communities.” It stores report data in Firebase and sends a WhatsApp message to local authorities. Residents in periurban areas (for example, Tlajomulco de Zúñiga, Jalisco) can report potholes, broken streetlights, water leaks, and other issues.
     </p>
     <hr />
 </header>
 
-<main class="container">
+<div class="container">
+    <!-- Sidebar -->
     <nav class="sidebar">
         <h3>Content</h3>
         <ul>
             <li><a href="#installation-and-use">⚙️ Installation</a></li>
-            <li><a href="#main-features">🔥 Features</a></li>
-            <li><a href="#screens-and-examples">🖼️ Screens</a></li>
+            <li><a href="#main-features">🔥 Main features</a></li>
+            <li><a href="#screens-and-examples">🖼️ App screens</a></li>
             <li><a href="#how-to-contribute">🤝 Contribute</a></li>
             <li><a href="#license">📝 License</a></li>
             <li><a href="api.html">📡 API</a></li>
         </ul>
     </nav>
 
-    <section id="installation-and-use">
-        <h2>2. Installation and use</h2>
-        <ol>
-            <li>
-                Clone the repository and navigate to the project folder:
-                <pre><code>git clone https://github.com/&lt;YOUR_USERNAME&gt;/vecino_seguro.git
+    <!-- Main content -->
+    <main>
+        <!-- 2. Installation and use -->
+        <section id="installation-and-use">
+            <h2>2. Install and run the app</h2>
+            <ol>
+                <li>
+                    Clone the repo and open the project folder:
+                    <pre><code>git clone https://github.com/&lt;YOUR_USERNAME&gt;/vecino_seguro.git
 cd vecino_seguro</code></pre>
-            </li>
-            <li>
-                Make sure you have Flutter <code>3.29.2</code> (or higher) and
-                Dart <code>3.7.2</code> installed. You can check with:
-                <pre><code>flutter --version</code></pre>
-                If you need to switch channels or upgrade, for example:
-                <pre><code>flutter channel stable
+                </li>
+                <li>
+                    Install Flutter (3.29.2 or later) and Dart (3.7.2). To verify, run:
+                    <pre><code>flutter --version</code></pre>
+                    If you need to switch channels or upgrade, run:
+                    <pre><code>flutter channel stable
 flutter upgrade
 flutter version 3.29.2</code></pre>
-            </li>
-            <li>
-                Install Dart/Flutter dependencies:
-                <pre><code>flutter pub get</code></pre>
-            </li>
-            <li>
-                Make sure you have configured the file <code>android/app/google-services.json</code>
-                (for Android) and <code>ios/Runner/GoogleService-Info.plist</code> (for iOS)
-                with your Firebase project credentials.
-            </li>
-            <li>
-                Run the application on an emulator or a real device:
-                <pre><code>flutter run</code></pre>
-                (In Android Studio, open the AVD Manager, select an emulator, and press Run.)
-            </li>
-            <li>
-                To build a production-ready APK:
-                <pre><code>flutter build apk --release</code></pre>
-                The generated APK will be located at
-                <code>build/app/outputs/flutter-apk/app-release.apk</code>.
-            </li>
-        </ol>
-    </section>
+                </li>
+                <li>
+                    Install dependencies:
+                    <pre><code>flutter pub get</code></pre>
+                </li>
+                <li>
+                    Add Firebase credentials:
+                    <ul>
+                        <li>Android: place <code>google-services.json</code> in <code>android/app/</code>.</li>
+                        <li>iOS: place <code>GoogleService-Info.plist</code> in <code>ios/Runner/</code>.</li>
+                    </ul>
+                </li>
+                <li>
+                    Run the app on an emulator or device:
+                    <pre><code>flutter run</code></pre>
+                    (In Android Studio, open AVD Manager, select an emulator, and click Run.)
+                </li>
+                <li>
+                    Build a release APK:
+                    <pre><code>flutter build apk --release</code></pre>
+                    Find the APK at <code>build/app/outputs/flutter-apk/app-release.apk</code>.
+                </li>
+            </ol>
+        </section>
 
-    <section id="main-features">
-        <h2>3. Main features</h2>
-        <ul>
-            <li>
-                <strong>Anonymous authentication</strong><br />
-                Each user accesses the app without registering. Firebase Auth creates an anonymous user
-                to manage read/write permissions in Firestore and Storage.
-            </li>
-            <li>
-                <strong>Report creation</strong>
-                <ul>
-                    <li>Select an incident type: “Pothole,” “Streetlight,” “Trash,” “Water leak,” or “Other.”</li>
-                    <li>Enter the location and description.</li>
-                    <li>Optionally take a photo with the camera.</li>
-                    <li>
-                        When you tap “Send report,” the data is saved to Firestore and,
-                        optionally, WhatsApp opens to share the incident:
-                        <pre><code>https://wa.me/5214626214305?text=&lt;encoded_text&gt;</code></pre>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <strong>Report list</strong>
-                <ul>
-                    <li>“My reports” screen: shows all reports sorted by date.</li>
-                    <li>Status filter: “All,” “Pending,” or “Resolved.”</li>
-                    <li>An anonymous user can delete their own reports (if enabled).</li>
-                </ul>
-            </li>
-            <li>
-                <strong>About CEFODEH</strong><br />
-                Displays information about the organization (CEFODEH), along with buttons
-                to send messages via WhatsApp and email.
-            </li>
-        </ul>
-    </section>
+        <!-- 3. Main features -->
+        <section id="main-features">
+            <h2>3. Main features</h2>
+            <ul>
+                <li>
+                    <strong>Anonymous authentication</strong><br />
+                    The app creates an anonymous user in Firebase Auth. You don’t need to sign up. Firebase Auth manages read/write permissions in Firestore and Storage.
+                </li>
+                <li>
+                    <strong>Create a report</strong>
+                    <ul>
+                        <li>Select an incident type: “Pothole,” “Streetlight,” “Trash,” “Water leak,” or “Other.”</li>
+                        <li>Enter the location and description.</li>
+                        <li>Optionally take a photo with the camera.</li>
+                        <li>
+                            Tap “Send report” to save data in Firestore. Optionally, open WhatsApp to share:
+                            <pre><code>https://wa.me/5214626214305?text=&lt;encoded_text&gt;</code></pre>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>View reports</strong>
+                    <ul>
+                        <li>“My reports” screen shows all reports sorted by date.</li>
+                        <li>Filter by status: “All,” “Pending,” or “Resolved.”</li>
+                        <li>An anonymous user can delete their own reports (if enabled).</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>About CEFODEH</strong><br />
+                    Displays information about CEFODEH. Tap buttons to contact via WhatsApp or email.
+                </li>
+            </ul>
+        </section>
 
-    <section id="screens-and-examples">
-        <h2>4. Screens and examples</h2>
+        <!-- 4. App screens -->
+        <section id="screens-and-examples">
+            <h2>4. App screens</h2>
 
-        <h3>4.1. Splash Screen</h3>
-        <p>
-            When you launch the app, it displays the CEFODEH logo and the text “Centro de Formación para el Desarrollo Humano” for 3 seconds.
-        </p>
-        <img src="screenshots/splash.png" alt="Splash Screen" style="max-width: 400px;" />
+            <h3>4.1. Splash screen</h3>
+            <p>
+                When you launch the app, it displays the CEFODEH logo and the text “Centro de Formación para el Desarrollo Humano” for 3 seconds.
+            </p>
+            <img src="screenshots/splash.png" alt="Splash screen" />
 
-        <h3>4.2. Home</h3>
-        <p>Main screen with buttons for “Create report,” “View reports,” and “About CEFODEH.”</p>
-        <img src="screenshots/home.png" alt="Home Screen" style="max-width: 400px;" />
+            <h3>4.2. Home</h3>
+            <p>Main screen with buttons for “Create report,” “View reports,” and “About CEFODEH.”</p>
+            <img src="screenshots/home.png" alt="Home screen" />
 
-        <h3>4.3. Create report</h3>
-        <p>Form to select the incident type, enter location and description, and (optionally) take a photo.</p>
-        <img src="screenshots/crear_reporte.png" alt="Create Report Screen" style="max-width: 400px;" />
+            <h3>4.3. Create report</h3>
+            <p>Form to select incident type, enter location and description, and optionally take a photo.</p>
+            <img src="screenshots/crear_reporte.png" alt="Create report screen" />
 
-        <h3>4.4. View reports</h3>
-        <p>List of reports with a status filter and an option to delete each one.</p>
-        <img src="screenshots/ver_reportes.png" alt="View Reports Screen" style="max-width: 400px;" />
+            <h3>4.4. View reports</h3>
+            <p>List of reports with a status filter and a delete option for each report.</p>
+            <img src="screenshots/ver_reportes.png" alt="View reports screen" />
 
-        <h3>4.5. About CEFODEH</h3>
-        <p>Institutional information with buttons to contact via WhatsApp and email.</p>
-        <img src="screenshots/acerca_cefodeh.png" alt="About CEFODEH Screen" style="max-width: 400px;" />
-    </section>
+            <h3>4.5. About CEFODEH</h3>
+            <p>Institutional information with buttons to contact via WhatsApp and email.</p>
+            <img src="screenshots/acerca_cefodeh.png" alt="About CEFODEH screen" />
+        </section>
 
-    <section id="how-to-contribute">
-        <h2>5. How to contribute</h2>
-        <p>If you want to help improve <em>Vecino Seguro</em>, follow these steps:</p>
-        <ol>
-            <li>Fork this repository.</li>
-            <li>
-                Create a branch for your new feature or fix:
-                <pre><code>git checkout -b my-new-feature</code></pre>
-            </li>
-            <li>
-                Make your changes, then:
-                <pre><code>git add .
+        <!-- 5. How to contribute -->
+        <section id="how-to-contribute">
+            <h2>5. How to contribute</h2>
+            <p>To help improve <em>Vecino Seguro</em>, follow these steps:</p>
+            <ol>
+                <li>Fork this repository.</li>
+                <li>
+                    Create a branch for your feature or fix:
+                    <pre><code>git checkout -b my-new-feature</code></pre>
+                </li>
+                <li>
+                    Make your changes:
+                    <pre><code>git add .
 git commit -m "Brief description of your improvement"</code></pre>
-            </li>
-            <li>
-                Push your branch to the remote repository:
-                <pre><code>git push origin my-new-feature</code></pre>
-            </li>
-            <li>Open a Pull Request on GitHub from your branch to <code>main</code> in this repository.</li>
-        </ol>
-    </section>
+                </li>
+                <li>
+                    Push your branch:
+                    <pre><code>git push origin my-new-feature</code></pre>
+                </li>
+                <li>Open a pull request on GitHub from your branch to <code>main</code>.</li>
+            </ol>
+        </section>
 
-</main>
+        <!-- 6. License -->
+        <section id="license">
+            <h2>6. License</h2>
+            <p>
+                This project is licensed under the MIT License. See the <a href="LICENSE">LICENSE</a> file for details.
+            </p>
+        </section>
+    </main>
+</div>
 </body>
 </html>
