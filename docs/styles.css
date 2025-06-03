@@ -303,7 +303,6 @@ a:hover {
   display: block;
 }
 
-/* Label below each image */
 .workflow-label {
   display: block;
   padding: 0.75rem 0.5rem;
@@ -313,7 +312,6 @@ a:hover {
   border-top: 1px solid #e0e0e0;
 }
 
-/* If the user’s screen is extremely narrow (<400px), shrink label text */
 @media (max-width: 400px) {
   .workflow-label {
     font-size: 0.85rem;
