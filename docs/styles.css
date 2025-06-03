@@ -51,3 +51,6 @@ footer {
   color: white;
   margin-top: auto;
 }
+html {
+  scroll-behavior: smooth;
+}
