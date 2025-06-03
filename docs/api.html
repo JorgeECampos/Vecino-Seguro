@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -54,27 +54,27 @@
 </head>
 <body>
 <header>
-    <h1>📡 API de Vecino Seguro</h1>
-    <p>Consulta el endpoint REST disponible públicamente</p>
+    <h1>📡 API for Vecino Seguro</h1>
+    <p>Consult the endpoint REST available publicly</p>
 </header>
 
 <section class="api-docs-grid">
     <div class="card">
-        <h2>📡 Endpoint público</h2>
-        <p>Devuelve un arreglo JSON con los reportes comunitarios:</p>
+        <h2>📡 Public Endpoint </h2>
+        <p>Returns a JSON array with community reports:</p>
         <pre><code id="code1">https://us-central1-mi-app-vecinal.cloudfunctions.net/getReportes</code></pre>
-        <button onclick="copyToClipboard('code1')">📋 Copiar</button>
+        <button onclick="copyToClipboard('code1')">📋 Copy</button>
     </div>
 
     <div class="card">
-        <h2>💻 Ejemplo con curl</h2>
+        <h2>💻 Example for curl</h2>
         <pre><code id="code2">curl https://us-central1-mi-app-vecinal.cloudfunctions.net/getReportes</code></pre>
         <button onclick="copyToClipboard('code2')">📋 Copiar</button>
     </div>
 
     <div class="card">
-        <h2>📄 Respuesta esperada (JSON)</h2>
-        <p>Ejemplo de objeto:</p>
+        <h2>📄 Expected response (JSON)</h2>
+        <p>Object example:</p>
         <pre><code id="code3">{
   "tipo": "Bache",
   "ubicacion": "Av. Hidalgo #123",
@@ -88,7 +88,7 @@
 </section>
 
 <footer>
-    <p><a href="index.html">← Volver a la documentación principal</a></p>
+    <p><a href="index.html">← Return to main documentation</a></p>
 </footer>
 
 <script>

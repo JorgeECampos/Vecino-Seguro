@@ -1,173 +1,160 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Vecino Seguro – Documentación</title>
+    <title>Vecino Seguro – Documentation</title>
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 <header>
     <h1>Vecino Seguro</h1>
     <p>
-        “Vecino Seguro” es una app Flutter que permite a cualquier ciudadano
-        reportar problemas en su comunidad (baches, luminarias fundidas, basura,
-        fugas, etc.) y enviarlos automáticamente por WhatsApp y almacenarlos en
-        Firestore / Firebase Storage.
+        Vecino Seguro helps residents report urban incidents quickly. It supports Sustainable Development
+        Goal 11: “Sustainable Cities and Communities.” Using Firebase, the app stores incident data and notifies authorities via WhatsApp.
+        Residents in periurban areas (for example, Tlajomulco de Zúñiga, Jalisco) can report issues such as potholes, broken streetlights,
+        or water leaks.
     </p>
     <hr />
 </header>
 
 <main class="container">
     <nav class="sidebar">
-        <h3>Contenido</h3>
+        <h3>Content</h3>
         <ul>
-            <li><a href="#descripcion">📌 Descripción</a></li>
-            <li><a href="#instalacion">⚙️ Instalación</a></li>
-            <li><a href="#caracteristicas">🔥 Características</a></li>
-            <li><a href="#pantallas">🖼️ Pantallas</a></li>
-            <li><a href="#contribuir">🤝 Contribuir</a></li>
-            <li><a href="#licencia">📝 Licencia</a></li>
+            <li><a href="#installation-and-use">⚙️ Installation</a></li>
+            <li><a href="#main-features">🔥 Features</a></li>
+            <li><a href="#screens-and-examples">🖼️ Screens</a></li>
+            <li><a href="#how-to-contribute">🤝 Contribute</a></li>
+            <li><a href="#license">📝 License</a></li>
             <li><a href="api.html">📡 API</a></li>
         </ul>
     </nav>
 
-<main>
-    <!-- 1. Descripción del proyecto -->
-    <section id="descripcion-del-proyecto">
-        <h2>1. Descripción del proyecto</h2>
-        <p>
-            La aplicación <strong>Vecino Seguro</strong> nació para abordar el ODS 11:
-            “Ciudades y comunidades sostenibles”. Permite que los residentes de una zona
-            periurbana (por ejemplo, Tlajomulco de Zúñiga, Jalisco) reporten incidencias
-            urbanas de forma rápida, almacenando la información en Firebase y notificando
-            a las autoridades vía WhatsApp.
-        </p>
-    </section>
-
-    <!-- 2. Instalación y uso -->
-    <section id="instalacion-y-uso">
-        <h2>2. Instalación y uso</h2>
+    <section id="installation-and-use">
+        <h2>2. Installation and use</h2>
         <ol>
             <li>
-                Clona el repositorio y navega a la carpeta del proyecto:
-                <pre><code>git clone https://github.com/&lt;TU_USUARIO&gt;/vecino_seguro.git
+                Clone the repository and navigate to the project folder:
+                <pre><code>git clone https://github.com/&lt;YOUR_USERNAME&gt;/vecino_seguro.git
 cd vecino_seguro</code></pre>
             </li>
             <li>
-                Asegúrate de tener instalado Flutter <code>3.29.2</code> (o superior) con
-                Dart <code>3.7.2</code>. Puedes verificarlo así:
+                Make sure you have Flutter <code>3.29.2</code> (or higher) and
+                Dart <code>3.7.2</code> installed. You can check with:
                 <pre><code>flutter --version</code></pre>
-                Si necesitas cambiar de canal o versión, por ejemplo:
+                If you need to switch channels or upgrade, for example:
                 <pre><code>flutter channel stable
 flutter upgrade
 flutter version 3.29.2</code></pre>
             </li>
             <li>
-                Instala dependencias de Dart/Flutter:
+                Install Dart/Flutter dependencies:
                 <pre><code>flutter pub get</code></pre>
             </li>
             <li>
-                Asegúrate de haber configurado el archivo <code>android/app/google-services.json</code>
-                (Android) y <code>ios/Runner/GoogleService-Info.plist</code> (iOS) con las credenciales
-                de tu proyecto Firebase.
+                Make sure you have configured the file <code>android/app/google-services.json</code>
+                (for Android) and <code>ios/Runner/GoogleService-Info.plist</code> (for iOS)
+                with your Firebase project credentials.
             </li>
             <li>
-                Corre la aplicación en un emulador o dispositivo real:
+                Run the application on an emulator or a real device:
                 <pre><code>flutter run</code></pre>
-                (En Android Studio, abre el AVD Manager, elige un emulador y presiona Run).
+                (In Android Studio, open the AVD Manager, select an emulator, and press Run.)
             </li>
             <li>
-                Para generar un APK listo para producción:
+                To build a production-ready APK:
                 <pre><code>flutter build apk --release</code></pre>
-                El APK generado quedará en
+                The generated APK will be located at
                 <code>build/app/outputs/flutter-apk/app-release.apk</code>.
             </li>
         </ol>
     </section>
 
-    <!-- 3. Características principales -->
-    <section id="caracteristicas-principales">
-        <h2>3. Características principales</h2>
+    <section id="main-features">
+        <h2>3. Main features</h2>
         <ul>
             <li>
-                <strong>Autenticación anónima</strong><br />
-                Cada usuario accede sin registrarse. Firebase Auth crea un usuario anónimo
-                para controlar permisos de lectura/escritura en Firestore y Storage.
+                <strong>Anonymous authentication</strong><br />
+                Each user accesses the app without registering. Firebase Auth creates an anonymous user
+                to manage read/write permissions in Firestore and Storage.
             </li>
             <li>
-                <strong>Creación de reportes</strong>
+                <strong>Report creation</strong>
                 <ul>
-                    <li>Seleccionar tipo de incidencia: “Bache”, “Luminaria”, “Basura”, “Fuga de agua” u “Otro”.</li>
-                    <li>Ingresar ubicación y descripción.</li>
-                    <li>Tomar foto opcional desde la cámara.</li>
+                    <li>Select an incident type: “Pothole,” “Streetlight,” “Trash,” “Water leak,” or “Other.”</li>
+                    <li>Enter the location and description.</li>
+                    <li>Optionally take a photo with the camera.</li>
                     <li>
-                        Al presionar “Enviar reporte”, se guardan los datos en Firestore y,
-                        opcionalmente, se abre WhatsApp para compartir la incidencia:
-                        <pre><code>https://wa.me/5214626214305?text=&lt;texto_codificado&gt;</code></pre>
+                        When you tap “Send report,” the data is saved to Firestore and,
+                        optionally, WhatsApp opens to share the incident:
+                        <pre><code>https://wa.me/5214626214305?text=&lt;encoded_text&gt;</code></pre>
                     </li>
                 </ul>
             </li>
             <li>
-                <strong>Visualización de reportes</strong>
+                <strong>Report list</strong>
                 <ul>
-                    <li>Pantalla “Mis reportes”: muestra todos los reportes ordenados por fecha.</li>
-                    <li>Filtro por estado: “todos” / “pendiente” / “resuelto”.</li>
-                    <li>El usuario anónimo puede eliminar sus propios reportes (si así se configura).</li>
+                    <li>“My reports” screen: shows all reports sorted by date.</li>
+                    <li>Status filter: “All,” “Pending,” or “Resolved.”</li>
+                    <li>An anonymous user can delete their own reports (if enabled).</li>
                 </ul>
             </li>
             <li>
-                <strong>Acerca de CEFODEH</strong><br />
-                Muestra información de la organización responsable (CEFODEH), junto a botones
-                para enviar mensajes por WhatsApp y correo electrónico.
+                <strong>About CEFODEH</strong><br />
+                Displays information about the organization (CEFODEH), along with buttons
+                to send messages via WhatsApp and email.
             </li>
         </ul>
     </section>
 
-    <!-- 4. Pantallas y ejemplos -->
-    <section id="pantallas-y-ejemplos">
-        <h2>4. Pantallas y ejemplos</h2>
+    <section id="screens-and-examples">
+        <h2>4. Screens and examples</h2>
 
         <h3>4.1. Splash Screen</h3>
         <p>
-            Al iniciar la app, se muestra durante 3 segundos el logo de CEFODEH y el nombre “Centro de Formación para el Desarrollo Humano”.
+            When you launch the app, it displays the CEFODEH logo and the text “Centro de Formación para el Desarrollo Humano” for 3 seconds.
         </p>
         <img src="screenshots/splash.png" alt="Splash Screen" style="max-width: 400px;" />
 
         <h3>4.2. Home</h3>
-        <p>Pantalla principal con botones para “Crear reporte”, “Ver reportes” y “Acerca de CEFODEH”.</p>
-        <img src="screenshots/home.png" alt="Pantalla Home" style="max-width: 400px;" />
+        <p>Main screen with buttons for “Create report,” “View reports,” and “About CEFODEH.”</p>
+        <img src="screenshots/home.png" alt="Home Screen" style="max-width: 400px;" />
 
-        <h3>4.3. Crear reporte</h3>
-        <p>Formulario para seleccionar tipo, ingresar ubicación, descripción y (opcional) tomar foto.</p>
-        <img src="screenshots/crear_reporte.png" alt="Pantalla Crear reporte" style="max-width: 400px;" />
+        <h3>4.3. Create report</h3>
+        <p>Form to select the incident type, enter location and description, and (optionally) take a photo.</p>
+        <img src="screenshots/crear_reporte.png" alt="Create Report Screen" style="max-width: 400px;" />
 
-        <h3>4.4. Ver reportes</h3>
-        <p>Listado de reportes con filtro por estado y opción de eliminar cada uno.</p>
-        <img src="screenshots/ver_reportes.png" alt="Pantalla Ver reportes" style="max-width: 400px;" />
+        <h3>4.4. View reports</h3>
+        <p>List of reports with a status filter and an option to delete each one.</p>
+        <img src="screenshots/ver_reportes.png" alt="View Reports Screen" style="max-width: 400px;" />
 
-        <h3>4.5. Acerca de CEFODEH</h3>
-        <p>Información institucional con botones de contacto por WhatsApp y correo.</p>
-        <img src="screenshots/acerca_cefodeh.png" alt="Pantalla Acerca de CEFODEH" style="max-width: 400px;" />
+        <h3>4.5. About CEFODEH</h3>
+        <p>Institutional information with buttons to contact via WhatsApp and email.</p>
+        <img src="screenshots/acerca_cefodeh.png" alt="About CEFODEH Screen" style="max-width: 400px;" />
     </section>
 
-    <!-- 5. Cómo contribuir -->
-    <section id="como-contribuir">
-        <h2>5. Cómo contribuir</h2>
-        <p>Si quieres ayudar a mejorar <em>Vecino Seguro</em>, sigue estos pasos:</p>
+    <section id="how-to-contribute">
+        <h2>5. How to contribute</h2>
+        <p>If you want to help improve <em>Vecino Seguro</em>, follow these steps:</p>
         <ol>
-            <li>Haz un <strong>Fork</strong> de este repositorio.</li>
+            <li>Fork this repository.</li>
             <li>
-                Crea una rama para tu nueva funcionalidad o corrección:
-                <pre><code>git checkout -b mi-nueva-funcionalidad</code></pre>
+                Create a branch for your new feature or fix:
+                <pre><code>git checkout -b my-new-feature</code></pre>
             </li>
-            <li>Realiza tus cambios, luego:
+            <li>
+                Make your changes, then:
                 <pre><code>git add .
-git commit -m "Descripción breve de la mejora"</code></pre>
+git commit -m "Brief description of your improvement"</code></pre>
             </li>
-            <li>Envía tu rama al repositorio remoto:
-                <pre><code>git push origin mi-nueva-funcionalidad</code></pre>
+            <li>
+                Push your branch to the remote repository:
+                <pre><code>git push origin my-new-feature</code></pre>
             </li>
-            <li>Abre un <strong>Pull Request</strong> en GitHub desde tu rama a <code>main</code> en este repositorio.</li>
+            <li>Open a Pull Request on GitHub from your branch to <code>main</code> in this repository.</li>
         </ol>
     </section>
 
+</main>
+</body>
+</html>
