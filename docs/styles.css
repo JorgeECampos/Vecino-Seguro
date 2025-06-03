@@ -256,3 +256,62 @@ a:hover {
     margin-bottom: 0.5rem;
   }
 }
+
+/* -------------------------------------
+   Workflow imágenes
+-------------------------------------- */
+
+#workflow {
+  margin-bottom: 3rem;
+}
+
+.workflow-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.workflow-step {
+  flex: 1 1 180px;
+  text-align: center;
+}
+
+.workflow-img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.workflow-img:hover {
+  transform: scale(1.02);
+}
+
+.workflow-caption {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.workflow-arrow {
+  font-size: 1.5rem;
+  color: #888;
+  flex: 0 0 auto; /* No crece ni se encoje */
+  margin: 0 0.5rem;
+}
+
+@media (max-width: 700px) {
+  .workflow-arrow {
+    display: none;
+  }
+  .workflow-step {
+    flex: 1 1 100%;
+    margin-bottom: 1.5rem;
+  }
+}
