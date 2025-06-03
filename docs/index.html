@@ -17,19 +17,19 @@
     <hr />
 </header>
 
-<nav>
-    <h2>Tabla de contenidos</h2>
-    <ul>
-        <li><a href="#descripcion-del-proyecto">1. Descripción del proyecto</a></li>
-        <li><a href="#instalacion-y-uso">2. Instalación y uso</a></li>
-        <li><a href="#caracteristicas-principales">3. Características principales</a></li>
-        <li><a href="#pantallas-y-ejemplos">4. Pantallas y ejemplos</a></li>
-        <li><a href="#como-contribuir">5. Cómo contribuir</a></li>
-        <li><a href="#licencia">6. Licencia</a></li>
-        <li><a href="#como-consumir-nuestra-api">7. ¿Cómo consumir nuestra API?</a></li>
-    </ul>
-    <hr />
-</nav>
+<main class="container">
+    <nav class="sidebar">
+        <h3>Contenido</h3>
+        <ul>
+            <li><a href="#descripcion">📌 Descripción</a></li>
+            <li><a href="#instalacion">⚙️ Instalación</a></li>
+            <li><a href="#caracteristicas">🔥 Características</a></li>
+            <li><a href="#pantallas">🖼️ Pantallas</a></li>
+            <li><a href="#contribuir">🤝 Contribuir</a></li>
+            <li><a href="#licencia">📝 Licencia</a></li>
+            <li><a href="api.html">📡 API</a></li>
+        </ul>
+    </nav>
 
 <main>
     <!-- 1. Descripción del proyecto -->
@@ -171,74 +171,3 @@ git commit -m "Descripción breve de la mejora"</code></pre>
         </ol>
     </section>
 
-    <!-- 6. ¿Cómo consumir nuestra API? -->
-    <section id="como-consumir-nuestra-api">
-        <h2>7. ¿Cómo consumir nuestra API?</h2>
-        <p>Hemos desplegado una función de Firebase Cloud Functions que devuelve todos los reportes en formato JSON. Para consumirla, sigue estos pasos:</p>
-
-        <h3>7.1. Obtener la URL de la función</h3>
-        <p>
-            Cuando desplegaste tu función con:
-            <code>firebase deploy --only functions:getReportes</code>,
-            Firebase te mostró algo como:
-        </p>
-        <pre><code>Function URL (getReportes(us-central1)):
-https://us-central1-mi-app-vecinal.cloudfunctions.net/getReportes</code></pre>
-
-        <h3>7.2. Consumirla desde un navegador o Postman</h3>
-        <ul>
-            <li>
-                <strong>En el navegador:</strong> Abre la URL
-                <code>https://us-central1-mi-app-vecinal.cloudfunctions.net/getReportes</code>
-                Deberías ver un arreglo JSON con todos los reportes almacenados en Firestore.
-            </li>
-            <li>
-                <strong>En Postman:</strong>
-                1. Crea una nueva petición <strong>GET</strong>.
-                2. Pega la URL
-                <code>https://us-central1-mi-app-vecinal.cloudfunctions.net/getReportes</code>
-                3. Haz clic en “Send” y verás la respuesta JSON en el cuerpo.
-            </li>
-        </ul>
-
-        <h3>7.3. Ejemplo de respuesta (formato JSON)</h3>
-        <pre><code>[
-  {
-    "id": "abc123",
-    "tipo": "Bache",
-    "ubicacion": "Av. Principal #123",
-    "descripcion": "Bache grande en la esquina",
-    "fotoURL": "https://firebasestorage.googleapis.com/...",
-    "fecha": "2025-05-30T18:25:43.511Z",
-    "estado": "pendiente",
-    "hash": "#SOYVOLUNTARIOCEFODEH"
-  },
-  {
-    "id": "def456",
-    "tipo": "Luminaria",
-    "ubicacion": "Calle Secundaria 45",
-    "descripcion": "La lámpara no enciende",
-    "fotoURL": "",
-    "fecha": "2025-05-29T14:12:00.000Z",
-    "estado": "resuelto",
-    "hash": "#SOYVOLUNTARIOCEFODEH"
-  }
-]
-</code></pre>
-        <p>
-            Cada objeto JSON incluye el <code>id</code> del documento en Firestore y todos
-            sus campos (<code>tipo</code>, <code>ubicacion</code>, <code>descripcion</code>,
-            <code>fotoURL</code>, <code>fecha</code>, <code>estado</code>, <code>hash</code>).
-        </p>
-    </section>
-</main>
-
-<footer>
-    <hr />
-    <p style="font-size: 0.9em; text-align: center;">
-        &copy; 2025 Jorge Campos – Vecino Seguro |
-        <a href="https://github.com/&lt;jorgeecampos&gt;/vecino_seguro" target="_blank">Repositorio en GitHub</a>
-    </p>
-</footer>
-</body>
-</html>
