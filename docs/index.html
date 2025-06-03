@@ -2,168 +2,148 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Vecino Seguro – Documentation</title>
     <link rel="stylesheet" href="styles.css" />
+
 </head>
+
 <body>
-<header>
-    <h1>Vecino Seguro</h1>
-    <p>
-        Vecino Seguro lets residents report urban problems quickly. The app supports Sustainable Development Goal 11: “Sustainable Cities and Communities.” It stores report data in Firebase and sends a WhatsApp message to local authorities. Residents in periurban areas (for example, Tlajomulco de Zúñiga, Jalisco) can report potholes, broken streetlights, water leaks, and other issues.
-    </p>
-    <hr />
+<header class="site-header">
+    <div class="header-content">
+        <h1 class="site-title">Vecino Seguro</h1>
+        <p class="site-tagline">
+            Helping residents report urban incidents quickly. Supports UN SDG 11:
+            “Sustainable Cities and Communities.” Incidents (e.g. potholes, broken streetlights,
+            water leaks) are stored in Firebase and authorities notified via WhatsApp.
+        </p>
+    </div>
+    <hr class="header-rule" />
 </header>
 
-<div class="container">
-    <!-- Sidebar -->
+<div class="main-layout">
     <nav class="sidebar">
-        <h3>Content</h3>
-        <ul>
-            <li><a href="#installation-and-use">⚙️ Installation</a></li>
-            <li><a href="#main-features">🔥 Main features</a></li>
-            <li><a href="#screens-and-examples">🖼️ App screens</a></li>
-            <li><a href="#how-to-contribute">🤝 Contribute</a></li>
-            <li><a href="#license">📝 License</a></li>
-            <li><a href="api.html">📡 API</a></li>
+        <h2 class="nav-heading">Contents</h2>
+        <ul class="nav-list">
+            <li><a href="#installation">⚙️ Installation</a></li>
+            <li><a href="#report">🚨 Report</a></li>
+            <li><a href="#dependencies">📦 Dependencies</a></li>
+            <li><a href="#run">▶️ How to Run</a></li>
+            <li><a href="#api">📡 API</a></li>
+            <li><a href="#contact">📞 Contact</a></li>
         </ul>
     </nav>
 
-    <!-- Main content -->
-    <main>
-        <!-- 2. Installation and use -->
-        <section id="installation-and-use">
-            <h2>2. Install and run the app</h2>
-            <ol>
+    <!-- Main Content -->
+    <main class="content">
+        <section id="installation" class="doc-section">
+            <h2>Installation</h2>
+            <ol class="doc-list">
                 <li>
-                    Clone the repo and open the project folder:
-                    <pre><code>git clone https://github.com/&lt;YOUR_USERNAME&gt;/vecino_seguro.git
-cd vecino_seguro</code></pre>
+                    Clone the repo:
+                    <div class="code-block">
+                        <button class="copy-btn" data-target="git-clone-cmd">Copy</button>
+                        <pre><code id="git-clone-cmd">git clone https://github.com/jorgeecampos/vecino_seguro.git</code></pre>
+                    </div>
                 </li>
                 <li>
-                    Install Flutter (3.29.2 or later) and Dart (3.7.2). To verify, run:
-                    <pre><code>flutter --version</code></pre>
-                    If you need to switch channels or upgrade, run:
-                    <pre><code>flutter channel stable
-flutter upgrade
-flutter version 3.29.2</code></pre>
+                    Install Flutter:
+                    <a href="https://flutter.dev/docs/get-started/install" target="_blank" rel="noopener">
+                        Flutter Install Guide ↗
+                    </a>
                 </li>
                 <li>
-                    Install dependencies:
-                    <pre><code>flutter pub get</code></pre>
-                </li>
-                <li>
-                    Add Firebase credentials:
-                    <ul>
-                        <li>Android: place <code>google-services.json</code> in <code>android/app/</code>.</li>
-                        <li>iOS: place <code>GoogleService-Info.plist</code> in <code>ios/Runner/</code>.</li>
-                    </ul>
-                </li>
-                <li>
-                    Run the app on an emulator or device:
-                    <pre><code>flutter run</code></pre>
-                    (In Android Studio, open AVD Manager, select an emulator, and click Run.)
-                </li>
-                <li>
-                    Build a release APK:
-                    <pre><code>flutter build apk --release</code></pre>
-                    Find the APK at <code>build/app/outputs/flutter-apk/app-release.apk</code>.
+                    From the project folder, run:
+                    <div class="code-block">
+                        <button class="copy-btn" data-target="flutter-get-cmd">Copy</button>
+                        <pre><code id="flutter-get-cmd">flutter pub get</code></pre>
+                    </div>
                 </li>
             </ol>
         </section>
 
-        <!-- 3. Main features -->
-        <section id="main-features">
-            <h2>3. Main features</h2>
-            <ul>
-                <li>
-                    <strong>Anonymous authentication</strong><br />
-                    The app creates an anonymous user in Firebase Auth. You don’t need to sign up. Firebase Auth manages read/write permissions in Firestore and Storage.
-                </li>
-                <li>
-                    <strong>Create a report</strong>
-                    <ul>
-                        <li>Select an incident type: “Pothole,” “Streetlight,” “Trash,” “Water leak,” or “Other.”</li>
-                        <li>Enter the location and description.</li>
-                        <li>Optionally take a photo with the camera.</li>
-                        <li>
-                            Tap “Send report” to save data in Firestore. Optionally, open WhatsApp to share:
-                            <pre><code>https://wa.me/5214626214305?text=&lt;encoded_text&gt;</code></pre>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>View reports</strong>
-                    <ul>
-                        <li>“My reports” screen shows all reports sorted by date.</li>
-                        <li>Filter by status: “All,” “Pending,” or “Resolved.”</li>
-                        <li>An anonymous user can delete their own reports (if enabled).</li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>About CEFODEH</strong><br />
-                    Displays information about CEFODEH. Tap buttons to contact via WhatsApp or email.
-                </li>
+        <!-- Report Section -->
+        <section id="report" class="doc-section">
+            <h2>Report</h2>
+            <p>
+                In the “Report” screen, users select a problem type, add a location,
+                attach a photo, and send it. The app will:
+            </p>
+            <ul class="doc-list">
+                <li>Ask for camera &amp; storage permissions (handled via <code>permission_handler</code>).</li>
+                <li>Store the image in Firebase Storage.</li>
+                <li>Save the report details (type, location, description, photo URL, timestamp) in Firestore.</li>
+                <li>Send a WhatsApp notification to local authorities with the incident details.</li>
             </ul>
         </section>
 
-        <!-- 4. App screens -->
-        <section id="screens-and-examples">
-            <h2>4. App screens</h2>
-
-            <h3>4.1. Splash screen</h3>
-            <p>
-                When you launch the app, it displays the CEFODEH logo and the text “Centro de Formación para el Desarrollo Humano” for 3 seconds.
-            </p>
-            <img src="screenshots/splash.png" alt="Splash screen" />
-
-            <h3>4.2. Home</h3>
-            <p>Main screen with buttons for “Create report,” “View reports,” and “About CEFODEH.”</p>
-            <img src="screenshots/home.png" alt="Home screen" />
-
-            <h3>4.3. Create report</h3>
-            <p>Form to select incident type, enter location and description, and optionally take a photo.</p>
-            <img src="screenshots/crear_reporte.png" alt="Create report screen" />
-
-            <h3>4.4. View reports</h3>
-            <p>List of reports with a status filter and a delete option for each report.</p>
-            <img src="screenshots/ver_reportes.png" alt="View reports screen" />
-
-            <h3>4.5. About CEFODEH</h3>
-            <p>Institutional information with buttons to contact via WhatsApp and email.</p>
-            <img src="screenshots/acerca_cefodeh.png" alt="About CEFODEH screen" />
+        <!-- Dependencies Section -->
+        <section id="dependencies" class="doc-section">
+            <h2>Dependencies</h2>
+            <p>The project uses these pub packages:</p>
+            <ul class="doc-list">
+                <li><code>cloud_firestore</code> (Firestore database integration)</li>
+                <li><code>firebase_storage</code> (Upload images to Storage)</li>
+                <li><code>image_picker</code> (Select or take photos)</li>
+                <li><code>permission_handler</code> (Request camera &amp; storage permissions)</li>
+                <li><code>url_launcher</code> (Open WhatsApp links)</li>
+            </ul>
         </section>
 
-        <!-- 5. How to contribute -->
-        <section id="how-to-contribute">
-            <h2>5. How to contribute</h2>
-            <p>To help improve <em>Vecino Seguro</em>, follow these steps:</p>
-            <ol>
-                <li>Fork this repository.</li>
-                <li>
-                    Create a branch for your feature or fix:
-                    <pre><code>git checkout -b my-new-feature</code></pre>
+        <!-- How to Run Section -->
+        <section id="run" class="doc-section">
+            <h2>How to Run</h2>
+            <ol class="doc-list">
+                <li>Ensure you have Flutter &amp; Dart SDK installed (see above).</li>
+                <li>Open the project folder in your IDE (e.g., VS Code or Android Studio).</li>
+                <li>Configure Firebase for Android &amp; iOS:
+                    <ul class="sub-list">
+                        <li>Place your <code>google-services.json</code> (Android) in <code>android/app/</code>.</li>
+                        <li>Place your <code>GoogleService-Info.plist</code> (iOS) in <code>ios/Runner/</code>.</li>
+                    </ul>
                 </li>
-                <li>
-                    Make your changes:
-                    <pre><code>git add .
-git commit -m "Brief description of your improvement"</code></pre>
+                <li>Run on an emulator or physical device:
+                    <div class="code-block">
+                        <button class="copy-btn" data-target="flutter-run-cmd">Copy</button>
+                        <pre><code id="flutter-run-cmd">flutter run</code></pre>
+                    </div>
                 </li>
-                <li>
-                    Push your branch:
-                    <pre><code>git push origin my-new-feature</code></pre>
-                </li>
-                <li>Open a pull request on GitHub from your branch to <code>main</code>.</li>
             </ol>
         </section>
 
-        <!-- 6. License -->
-        <section id="license">
-            <h2>6. License</h2>
-            <p>
-                This project is licensed under the MIT License. See the <a href="LICENSE">LICENSE</a> file for details.
-            </p>
-        </section>
+
+        <footer class="site-footer">
+            <p>&copy; 2025 Vecino Seguro. All rights reserved.</p>
+        </footer>
     </main>
 </div>
+
+<!-- Copy-to-Clipboard -->
+<script>
+    // When a “Copy” button is clicked, copy the corresponding <code> text.
+    document.querySelectorAll(".copy-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const targetId = btn.getAttribute("data-target");
+        const codeElem = document.getElementById(targetId);
+        if (!codeElem) return;
+        // Copy the innerText of the <code> element
+        navigator.clipboard
+          .writeText(codeElem.innerText.trim())
+          .then(() => {
+            btn.textContent = "Copied!";
+            setTimeout(() => {
+              btn.textContent = "Copy";
+            }, 1500);
+          })
+          .catch(() => {
+            btn.textContent = "Error";
+            setTimeout(() => {
+              btn.textContent = "Copy";
+            }, 1500);
+          });
+      });
+    });
+  </script>
 </body>
 </html>
