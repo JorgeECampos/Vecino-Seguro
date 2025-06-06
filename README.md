@@ -26,4 +26,4 @@
 
 ## 📚 Documentation
 
-The complete guide (detailed installation, screen flow, code examples, and API) is available at https://jorgeecampos.github.io/vecino_seguro/.
+The complete guide (detailed installation, screen flow, code examples, and API) is available at [https://jorgeecampos.github.io/vecino_seguro/.](https://jorgeecampos.github.io/Vecino-Seguro/).
